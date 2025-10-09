@@ -1,7 +1,8 @@
 FROM node:18-alpine AS Builder
 WORKDIR /app
 COPY . .
-RUN npm install && npm run scripts
+RUN npm install
+CMD ["npm" , "start"]
 
 FROM nginx:stable-alpine
 COPY --from=Builder fronted/build /usr/share/nginx/html
